@@ -19,10 +19,10 @@ if uploaded_file is not None:
         df = pd.read_excel(uploaded_file)
     else:
         st.write("Invalid file type. Please upload a CSV or Excel file.")
-        st.stop()  # Stop execution if the file type is invalid
+        st.stop() 
 
-    st.write(f"**File Name:** {uploaded_file.name}")  # Proper formatting
-    st.write(f"**File Size:** {uploaded_file.size} bytes")  # Correct size display
+    st.write(f"**File Name:** {uploaded_file.name}")
+    st.write(f"**File Size:** {uploaded_file.size} bytes") 
 
     st.write("### Data Preview:")
     st.dataframe(df.head())
@@ -32,13 +32,13 @@ if uploaded_file is not None:
 
     # Drop Duplicates
     if st.checkbox(f"Drop Duplicates from {uploaded_file.name}"):
-        col1, col2 = st.columns(2)  # Updated to use st.columns()
+        col1, col2 = st.columns(2)
 
         with col1:
             if st.button(f"Remove Duplicates from {uploaded_file.name}"):
                 df.drop_duplicates(inplace=True)
                 st.write("Duplicates Removed")
-                st.dataframe(df.head())  # Display updated data
+                st.dataframe(df.head())
 
         # Fill Missing Values
         with col2:
@@ -46,7 +46,7 @@ if uploaded_file is not None:
                 numeric = df.select_dtypes(include="number").columns
                 df[numeric] = df[numeric].fillna(df[numeric].mean())
                 st.write("Missing Values Filled")
-                st.dataframe(df.head())  # Display updated data
+                st.dataframe(df.head()) 
 
     # Select Columns to Convert
     st.subheader("Select Columns to Convert")
